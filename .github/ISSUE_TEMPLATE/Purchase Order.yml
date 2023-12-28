@@ -30,7 +30,7 @@ body:
     required: false
 - type: input
     attributes:
-      label: Total Order Cost [$AUD]
+      label: aaa
       description: Give your best estimate, as this will be updated by your team leader when the purchase is actually made. If your order is in another currency, google the current conversion rate. Include shipping and GST - you can usually get an estimate for this by checking out your cart.
       placeholder: $99.99
     validations:
