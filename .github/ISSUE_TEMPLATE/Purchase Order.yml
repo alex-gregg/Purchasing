@@ -29,9 +29,9 @@ body:
   validations:
     required: false
 - type: input
-    attributes:
-      label: aaa
-      description: bbb
-      placeholder: ccc
-    validations:
-      required: false
+  attributes:
+    label: aaa
+    description: bbb
+    placeholder: ccc
+  validations:
+    required: false
