@@ -19,7 +19,7 @@ jobs:
 
       - name: Parse Issue Description and Set Labels
         run: |
-          python label_issue.py
+          python .github/scripts/label_issue.py
         env:
           GITHUB_EVENT_ISSUE_BODY: ${{ github.event.issue.body }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
