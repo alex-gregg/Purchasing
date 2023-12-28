@@ -18,13 +18,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueDescription = github.context.payload.issue.body;
-            
+
             console.log('Issue Description:', issueDescription);
 
             // Apply the "hello" label
             const labels = ['hello'];
             github.issues.addLabels({
-              issue_number: github.context.issue.number,
+              issue_number: github.context.payload.issue.number,
               owner: github.context.repo.owner,
               repo: github.context.repo.repo,
               labels: labels,
