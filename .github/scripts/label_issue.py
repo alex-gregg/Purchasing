@@ -2,7 +2,7 @@ import re
 import os
 
 issue_description = os.getenv('GITHUB_EVENT_ISSUE_BODY', '')
-team_name_match = re.search(r'## Team\n([^\n]+)', issue_description)
+team_name_match = re.search(r'### Team\n([^\n]+)', issue_description)
 
 if team_name_match and team_name_match.group(1):
     team_name = team_name_match.group(1).strip()
