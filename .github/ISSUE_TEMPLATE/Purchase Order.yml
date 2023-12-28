@@ -20,7 +20,7 @@ body:
 - type: textarea
   attributes:
     label: Description
-    description: Be verbose in this section. Clearly lay out What you want purchased, The quantity of these you want, and what shipping/pickup option(s). If you don't specify a specific option, we will default to the cheapest/slowest. For individual items, you can/should include links, as well as part numbers. For complicated orders, it also helps to attach a cart screenshot in the field below. The more specific you are, the better. If we can't work out what to buy, your PO will be rejected and you'll have to resubmit.
+    description: Be verbose: tell us what you want, the quantity, and shipping/pickup option(s). Include links/part numbers. For complicated orders, attach a cart screenshot in the field below. If we can't work out what to buy, your PO will be rejected and you'll have to resubmit.
   validations:
     required: false
 - type: textarea
