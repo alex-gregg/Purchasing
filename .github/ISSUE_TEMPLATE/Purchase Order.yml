@@ -17,13 +17,6 @@ body:
     default: 0
   validations:
     required: false
-- type: input
-    attributes:
-      label: Total Order Cost
-      description: Give your best estimate - this will be updated by your team leader when the purchase is actually made. This cost is in AUD. If your order is in another currency, google the current conversion rate. Include shipping and GST - you can usually get an estimate for this by 'checking out' your cart.
-      placeholder: $99.99
-    validations:
-      required: false
 - type: textarea
   attributes:
     label: Description
