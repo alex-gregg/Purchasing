@@ -2,6 +2,7 @@ name: New Purchase Order
 description: Purchases are made with a university credit card - please limit form submissions to a single credit card purchase - e.g. one item, or a cart of multiple items from the same store.
 labels: []
 body:
+projects: alex-gregg/2
 - type: dropdown
   attributes:
     label: Team
@@ -16,22 +17,16 @@ body:
     default: 0
   validations:
     required: false
-- type: textarea
-  attributes:
-    label: Description
-    description: Tell us what to buy, inc. qty, links, part #s, & shipping options. For complicated orders, attach a cart screenshot below. If you're not clear, your PO will be rejected and you'll have to resubmit.
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Cart Screenshot(s)
-    description: "You can attach images or log files by clicking this area to highlight it and then dragging files in."
-  validations:
-    required: false
 - type: input
   attributes:
     label: Total Order Cost [$AUD]
     description: Give your best estimate, this will be updated by your team leader when the purchase is actually made. If not AUD, google the current conversion rate. Include shipping & GST.
     placeholder: $99.99
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Description
+    description: Tell us what to buy, inc. qty, links, part nums, shipping options. For complicated orders, attach a cart screenshot. Unclear POs will be rejected and you'll have to resubmit.
   validations:
     required: false
