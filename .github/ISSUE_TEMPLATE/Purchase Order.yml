@@ -1,8 +1,8 @@
 name: New Purchase Order
 description: Purchases are made with a university credit card - please limit form submissions to a single credit card purchase - e.g. one item, or a cart of multiple items from the same store.
 labels: []
-body:
 projects: alex-gregg/2
+body:
 - type: dropdown
   attributes:
     label: Team
