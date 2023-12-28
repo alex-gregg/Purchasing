@@ -12,27 +12,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      - name: Parse Issue Description and Set Labels
-        run: |
-          python .github/scripts/label_issue.py
-        env:
-          GITHUB_EVENT_ISSUE_BODY: ${{ github.event.issue.body }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Set Issue Label
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const teamName = process.env['TEAM_NAME'];
+            const labels = ['hello'];
             github.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: [teamName],
+              labels: labels,
             });
