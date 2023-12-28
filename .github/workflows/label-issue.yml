@@ -17,7 +17,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueDescription = github.context.payload.issue.body;
+            const issueDescription = github.event.issue.body;
             const teamNameMatch = issueDescription.match(/### Team\s*\n\s*([^\n]+)/);
             
             if (teamNameMatch && teamNameMatch[1]) {
@@ -25,13 +25,13 @@ jobs:
               const labels = [teamName];
               
               github.issues.addLabels({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
+                issue_number: github.context.issue.number,
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
                 labels: labels,
               });
 
-              console.log(`Label "${teamName}" added to issue #${context.issue.number}`);
+              console.log(`Label "${teamName}" added to issue #${github.context.issue.number}`);
             } else {
               console.log('Team name not found in the issue description.');
             }
