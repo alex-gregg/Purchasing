@@ -4,8 +4,8 @@ import os
 issue_description = os.getenv('GITHUB_EVENT_ISSUE_BODY', '')
 print(f'Issue Description: {issue_description}')
 
-# Adjusted regular expression for ### Team
-team_name_match = re.search(r'### Team\n([^\n]+)', issue_description)
+# Adjusted regular expression for ### Team with optional whitespace line
+team_name_match = re.search(r'### Team\s*\n\s*([^\n]+)', issue_description)
 
 if team_name_match:
     team_name = team_name_match.group(1).strip()
