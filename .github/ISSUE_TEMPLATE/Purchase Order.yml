@@ -32,6 +32,6 @@ body:
     attributes:
       label: aaa
       description: bbb
-      placeholder: $99.99
+      placeholder: ccc
     validations:
       required: false
