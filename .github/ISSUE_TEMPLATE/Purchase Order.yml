@@ -31,7 +31,7 @@ body:
 - type: input
   attributes:
     label: Total Order Cost [$AUD]
-    description: bbb
+    description: Give your best estimate, this will be updated by your team leader when the purchase is actually made. If not AUD, google the current conversion rate. Include shipping & GST.
     placeholder: ccc
   validations:
     required: false
