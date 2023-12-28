@@ -13,27 +13,38 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Issue Label
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const issue = github.context.payload.issue;
+        env:
+          GITHUB_EVENT_ISSUE_BODY: ${{ github.event.issue.body }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python - <<EOF
+import os
+from github import Github
 
-            if (issue && issue.body) {
-              const issueDescription = issue.body;
+# Get the issue body
+issue_body = os.getenv('GITHUB_EVENT_ISSUE_BODY')
 
-              console.log('Issue Description:', issueDescription);
+# Extract team name from the issue body
+team_name_index = issue_body.find('### Team')
+if team_name_index != -1:
+    team_name_start = team_name_index + len('### Team')
+    team_name_end = issue_body.find('\n', team_name_start)
+    team_name = issue_body[team_name_start:team_name_end].strip()
 
-              // Apply the "hello" label
-              const labels = ['hello'];
-              github.issues.addLabels({
-                issue_number: issue.number,
-                owner: github.context.repo.owner,
-                repo: github.context.repo.repo,
-                labels: labels,
-              });
+    # Add the team name as a label
+    github_token = os.getenv('GITHUB_TOKEN')
+    repository = os.getenv('GITHUB_REPOSITORY')
 
-              console.log('Label "hello" added to the issue.');
-            } else {
-              console.log('Issue or issue body not available.');
-            }
+    g = Github(github_token)
+    repo = g.get_repo(repository)
+    issue_number = int(os.getenv('GITHUB_EVENT_ISSUE_NUMBER'))
+
+    issue = repo.get_issue(issue_number)
+    issue.add_to_labels(team_name)
+
+    print(f'Label "{team_name}" added to issue #{issue_number}')
+else:
+    print('Team name not found in the issue description.')
+EOF
