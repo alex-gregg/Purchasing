@@ -32,6 +32,6 @@ body:
   attributes:
     label: Total Order Cost [$AUD]
     description: Give your best estimate, this will be updated by your team leader when the purchase is actually made. If not AUD, google the current conversion rate. Include shipping & GST.
-    placeholder: ccc
+    placeholder: $99.99
   validations:
     required: false
