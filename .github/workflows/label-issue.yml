@@ -1,23 +1,23 @@
 name: Set Issue Label
-uses: actions/github-script@v4
-with:
-  github-token: ${{ secrets.GITHUB_TOKEN }}
-  script: |
-    const issueDescription = github.context.payload.issue.body;
-    const teamNameMatch = issueDescription.match(/### Team\s*\n\s*([^\n]+)/);
-    
-    if (teamNameMatch && teamNameMatch[1]) {
-      const teamName = teamNameMatch[1].trim();
-      const labels = [teamName];
+  uses: actions/github-script@v4
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    script: |
+      const issueDescription = github.context.payload.issue.body;
+      const teamNameMatch = issueDescription.match(/### Team\s*\n\s*([^\n]+)/);
       
-      github.issues.addLabels({
-        issue_number: context.issue.number,
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        labels: labels,
-      });
-
-      console.log(`Label "${teamName}" added to issue #${context.issue.number}`);
-    } else {
-      console.log('Team name not found in the issue description.');
-    }
+      if (teamNameMatch && teamNameMatch[1]) {
+        const teamName = teamNameMatch[1].trim();
+        const labels = [teamName];
+        
+        github.issues.addLabels({
+          issue_number: context.issue.number,
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          labels: labels,
+        });
+  
+        console.log(`Label "${teamName}" added to issue #${context.issue.number}`);
+      } else {
+        console.log('Team name not found in the issue description.');
+      }
