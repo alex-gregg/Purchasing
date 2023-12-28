@@ -2,6 +2,9 @@ import re
 import os
 
 issue_description = os.getenv('GITHUB_EVENT_ISSUE_BODY', '')
+print(f'Issue Description: {issue_description}')
+
+# Adjusted regular expression for ### Team
 team_name_match = re.search(r'### Team\n([^\n]+)', issue_description)
 
 if team_name_match and team_name_match.group(1):
