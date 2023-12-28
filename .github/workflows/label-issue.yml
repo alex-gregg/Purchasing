@@ -17,17 +17,23 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueDescription = github.context.payload.issue.body;
+            const issue = github.context.payload.issue;
 
-            console.log('Issue Description:', issueDescription);
+            if (issue && issue.body) {
+              const issueDescription = issue.body;
 
-            // Apply the "hello" label
-            const labels = ['hello'];
-            github.issues.addLabels({
-              issue_number: github.context.payload.issue.number,
-              owner: github.context.repo.owner,
-              repo: github.context.repo.repo,
-              labels: labels,
-            });
+              console.log('Issue Description:', issueDescription);
 
-            console.log('Label "hello" added to the issue.');
+              // Apply the "hello" label
+              const labels = ['hello'];
+              github.issues.addLabels({
+                issue_number: issue.number,
+                owner: github.context.repo.owner,
+                repo: github.context.repo.repo,
+                labels: labels,
+              });
+
+              console.log('Label "hello" added to the issue.');
+            } else {
+              console.log('Issue or issue body not available.');
+            }
