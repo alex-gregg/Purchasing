@@ -30,7 +30,7 @@ body:
     required: false
 - type: input
   attributes:
-    label: aaa
+    label: Total Order Cost [$AUD]
     description: bbb
     placeholder: ccc
   validations:
